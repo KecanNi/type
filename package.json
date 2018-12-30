@@ -4,6 +4,7 @@
     "@babel/preset-env": "^7.2.3",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
-    "gulp-babel": "^8.0.0"
+    "gulp-babel": "^8.0.0",
+    "gulp-webserver": "^0.9.1"
   }
 }
