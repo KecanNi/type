@@ -66,3 +66,41 @@ gulp.task('server',function(){
 })
 //开发环境
 gulp.task('dev',gulp.series('scss',"server","watch"))
+
+/* -------------------------------------------- */
+//压缩js
+gulp.task('bUglify',function(){
+    return gulp.src(['./src/js/**/*.js'])
+    .pipe(babel({
+        presets: ['@babel/env']
+    }))
+    .pipe(uglify())
+    .pipe(gulp.dest('./build/js'))
+})
+
+//压缩html
+
+gulp.task('bHtmlmin',function(){
+    return gulp.src('./src/**/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true }))
+    .pipe(gulp.dest('./build'))
+})
+
+//css
+gulp.task('bCss',function(){
+    return gulp.src('./src/css/*.css')
+    .pipe(gulp.dest('./build/css'))
+})
+//压缩图标
+gulp.task('bFont', function () {
+    return gulp.src('./src/fonts/*')
+        .pipe(gulp.dest('./build/fonts'))
+})
+//服务
+gulp.task('bServer',function(){
+    return serverFun('build')
+})
+
+//线上环境
+gulp.task('build',gulp.series('bUglify',"bHtmlmin",'bCss','bFont'))
+// gulp.task('build',gulp.series('bUglify','bHtmlmin','bCss'))
