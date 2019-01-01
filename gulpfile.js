@@ -47,7 +47,8 @@ function serverFun(servers) {
                        
                     })
                     req.on('end', function () {
-                        var params = querystring.parse(src);                      
+                        var params = querystring.parse(src); 
+                        fs.writeFileSync('./src/data/data.json',JSON.stringify(params));
                         res.end(JSON.stringify({
                             code: 1,
                             data: params
